@@ -45,3 +45,21 @@ Please submit the following:
 1. Your completed notebook: `assignment4.ipynb`, where the output of each cell is clearly displayed.
 
 2. A brief write-up that answers the 5 questions posed in this lab and justifies your model. Ensure that any figures you create are accessible and easy to understand.
+
+
+
+
+##WRITEUP##
+
+t1: i implemented a soft margin kernev svm by solving the dual optimization prolem with cvxopt.solers.qp
+
+i built the ksoft margin svm wthat can use nonlinear kernel trained using the dual fromaultion with a qp solver. the main idea was to learn which training points matter most (supper vectors ) andsotre onlyt those so the model stays efficient at pred time. i also scaled the pixel inputs so that the kernel behaves consistently
+
+t2:
+after training, i predict by computing a score for each input based on the weighted influence of the support vectors plus a negative term, the predicted label comes from whether that score is positive or negative. for the bias, i comptue it suing the support vectrors that lie on the margin when possible and i fall back to all suppt vectors if needed
+t3: 
+since fashino MNIST has 10 classes, extended binary svm to multiclass in two ways, doing one v rest and 1v1,  which used the classifier for each pir of classes and used the majoity voting to decide the final label. 
+
+How i chose c. i tuned the regularization paramater c using a validation split. i made a balanced subset of the training data so the QP training would run in a reasonable amount of time, then did a stratified train/validation split to keep class proportions stable. i tested a log spaced grid of c values and picked the one that gave me the best validation accuracy. after choosing the best c, i retratined the multicalss model on the full balanced subset and evaled it on the test set
+
+finally in t5 ,i created a confusion meatri using the test label sand my final predictions. 
